@@ -54,7 +54,7 @@ assets/furniture/
         images/.gitkeep
 ```
 
-The initial directories are tracked with `images/.gitkeep`; other per-model folders are created when populated. Each model may have many files, but `image` in JSON selects the **one primary image** rendered by the website. When adding a new asset or moving it to a category, maintain both its directory path and JSON reference. See `AGENTS.md` for all image-generation rules.
+The image and GLB directories are tracked with `images/.gitkeep` and `models/.gitkeep`; source/texture folders are created when populated. Each model may have many files, but `image` in JSON selects the **one primary image** rendered by the website. When adding a new asset or moving it to a category, maintain both its directory path and JSON reference. See `AGENTS.md` for all image-generation rules.
 
 ## Edit or add a piece of furniture
 
@@ -69,7 +69,8 @@ Edit `data/furniture.json` in GitHub or a code editor. Each model has the follow
   "description": "A compact, upright shelf unit for tight corridors or small studies.",
   "imagePrompt": "A narrow dark oak bookcase with three shelves...",
   "baseImagePrompt": "dungeon-furniture-v1",
-  "image": null
+  "image": null,
+  "model": null
 }
 ```
 
@@ -81,6 +82,7 @@ Edit `data/furniture.json` in GitHub or a code editor. Each model has the follow
 - **imagePrompt:** Details specific to this one object.
 - **baseImagePrompt:** Identifier of a shared prompt in `baseImagePrompts`. The page resolves the ID into its full text. This keeps the entire set visually coherent without repeating lengthy prompts on every record.
 - **image:** The path to the published PNG/JPG/WebP/AVIF inside this asset's category-mirrored `images/` directory, or `null` when no image exists.
+- **model:** The optional path to an approved GLB file in this asset's `models/` directory, or `null` until one is available. This is independent of `IsImageGenerated`.
 
 When the generated image is approved, save it inside the asset's own folder (for example, `assets/furniture/storage/bookcases/AHQ-FUR-001/images/primary.png`), then update the entry:
 
@@ -98,6 +100,26 @@ The JSON includes a `baseImagePrompts` object with named art directions. Every m
 The **Copy combined prompt** control assembles the full shared art direction followed by the furniture-specific description. There are also separate copy controls for each prompt.
 
 For useful future 3D conversion, make source images depict a **single isolated object** with unobstructed geometry and consistent camera/lighting. The prompts are concept art instructions; this website does not generate images or 3D meshes automatically.
+
+## Interactive 3D model viewer
+
+The preview panel includes **Image** and **3D Model** controls. The image remains the default, and choosing 3D loads an interactive GLB where available. Rotate by dragging, zoom with the mouse wheel or pinching, and return to Image at any time. Missing images/GLBs show placeholders instead of broken embeds.
+
+When a GLB has been generated and approved, save it in the existing category-mirrored folder, for example:
+
+```text
+assets/furniture/storage/bookcases/AHQ-FUR-001/models/primary.glb
+```
+
+Set the corresponding furniture record to:
+
+```json
+"model": "assets/furniture/storage/bookcases/AHQ-FUR-001/models/primary.glb"
+```
+
+Keep `image` and `IsImageGenerated` unchanged. The validator enforces the model's asset-specific folder and checks the GLB container header/version/length. Model rendering and mesh quality must also be inspected manually. Prefer self-contained GLB exports with embedded textures.
+
+The viewer uses Google's [`<model-viewer>`](https://modelviewer.dev/) web component pinned to version 4.3.1 from jsDelivr. The website still needs no backend or build process, but displaying GLBs requires browser WebGL support and the CDN script. Optimise model size for mobile and slower connections.
 
 ## Run and validate locally
 
@@ -123,4 +145,4 @@ GitHub Actions runs this validation on pushes to `main` and on pull requests.
 
 This initial release is a **read-only catalogue**: to persist edits, modify the JSON and commit the changed file. Search, artwork status filters, deep links to models via `#AHQ-FUR-001`, responsive layout, and prompt copying work without any backend.
 
-Potential future data fields, when needed: model footprint/dimensions for dungeon tiles, 3D file path (GLB), generation history/variants, and a workflow status beyond the simple image-generated flag. An in-browser editor that saves back to GitHub would require authentication and a separate write integration.
+Potential future data fields, when needed: model footprint/dimensions for dungeon tiles, generation history/variants, and a workflow status beyond the simple image-generated flag. An in-browser editor that saves back to GitHub would require authentication and a separate write integration.
