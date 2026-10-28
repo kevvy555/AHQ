@@ -82,8 +82,12 @@
             <span id="statusBadge" class="status-badge pending">Awaiting artwork</span>
           </div>
 
-          <section class="preview-panel" aria-label="Asset image preview">
-            <div class="panel-heading"><span>01 <span class="panel-heading-divider">/</span> IMAGE PREVIEW</span><span id="previewLabel">CONCEPT PENDING</span></div>
+          <section class="preview-panel" aria-label="Image or interactive 3D preview">
+            <div class="panel-heading"><span>01 <span class="panel-heading-divider">/</span> ASSET PREVIEW</span><span id="previewLabel">CONCEPT PENDING</span></div>
+            <div class="preview-switch" role="group" aria-label="Preview type">
+              <button type="button" id="viewImageButton" class="preview-switch-button active" aria-pressed="true">Image</button>
+              <button type="button" id="viewModelButton" class="preview-switch-button" aria-pressed="false">3D Model</button>
+            </div>
             <div class="art-stage" id="artStage"></div>
             <div class="preview-bottom"><span id="previewCaption">A visual will appear here once generated and added to the archive.</span><span class="preview-format">ASSET / 3D REFERENCE</span></div>
           </section>
@@ -112,6 +116,7 @@
     </main>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
   <script type="module" src="assets/app.js"></script>
 </body>
 </html>
