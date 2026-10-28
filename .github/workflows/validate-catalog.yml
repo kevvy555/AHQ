@@ -18,5 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check JSON and referenced images
+      - name: Check JSON and referenced assets
         run: node scripts/validate-catalog.mjs
+      - name: Check browser JavaScript syntax
+        run: node --input-type=module --check < assets/app.js
