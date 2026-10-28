@@ -68,14 +68,34 @@ for (const item of Array.isArray(catalog.items) ? catalog.items : []) {
     fail(item.id + ": unknown baseImagePrompt ID " + item.baseImagePrompt);
   }
   if (!Object.hasOwn(item, "image")) fail(item.id + ": missing image field (use null until an image exists)");
+  if (!Object.hasOwn(item, "model")) fail(item.id + ": missing model field (use null until a GLB exists)");
   const categoryTrail = categoryPaths.get(item.categoryId);
   if (!categoryTrail) continue;
   const modelDir = "assets/furniture/" + categoryTrail.join("/") + "/" + item.id;
+  if (!fs.existsSync(path.join(root, modelDir, "models"))) fail(item.id + ": missing models directory: " + modelDir + "/models");
   if (!fs.existsSync(path.join(root, modelDir, "images"))) {
     fail(item.id + ": missing model image directory: " + modelDir + "/images");
   }
   if (item.IsImageGenerated && !item.image) {
     fail(item.id + ": generated flag requires an image file");
+  }
+  if (item.model !== null && item.model !== undefined) {
+    const prefix = modelDir + "/models/";
+    const filename = typeof item.model === "string" && item.model.startsWith(prefix)
+      ? item.model.slice(prefix.length) : "";
+    const valid = /^[a-z0-9][a-z0-9_-]*\.glb$/i.test(filename);
+    if (!valid) fail(item.id + ": GLB must be inside its own model folder: " + prefix);
+    else {
+      const modelFile = path.join(root, item.model);
+      if (!fs.existsSync(modelFile)) fail(item.id + ": model file does not exist: " + item.model);
+      else {
+        const file = fs.readFileSync(modelFile);
+        if (file.length < 12 || file.toString("ascii", 0, 4) !== "glTF" ||
+            file.readUInt32LE(4) !== 2 || file.readUInt32LE(8) !== file.length) {
+          fail(item.id + ": model file is not a valid GLB 2.0 container: " + item.model);
+        }
+      }
+    }
   }
   if (item.image !== null && item.image !== undefined) {
     const prefix = modelDir + "/images/";
