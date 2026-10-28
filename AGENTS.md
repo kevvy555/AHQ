@@ -73,15 +73,16 @@ Visible furnishings should remain physically understandable for a 3D modelling s
 
 ### 5. Review first — publish second
 
-- For the **first asset** (`AHQ-FUR-001`, Narrow Bookcase), aim for **two or three distinctly useful candidates** to establish the visual baseline. Do not start a bulk-generation run.
-- Save review candidates, where a generator actually produced files, as `assets/images/candidates/<ASSET-ID>/candidate-01.png`, `candidate-02.png`, etc. Keep them **unreferenced** by `data/furniture.json`.
-- Present the actual images or accessible repository/PR links, along with differences, a preferred candidate and any limitations.
-- **Wait for explicit human approval before publishing a candidate as the final image.** A successful generation is not automatically approval.
-- After approval, copy or move the selected master to `assets/images/<ASSET-ID>.png` (example: `assets/images/AHQ-FUR-001.png`). Do not overwrite an approved file without permission.
+- Generate **exactly one image per requested asset** unless the user explicitly requests more. For the **first asset** (`AHQ-FUR-001`, Narrow Bookcase), generate just one image to establish the visual baseline; do not generate additional furniture.
+- Store the review image temporarily as `assets/images/candidates/<ASSET-ID>/candidate-01.png` if a repository path is needed, but **do not update `data/furniture.json` during review**. A locally generated image can be presented directly without committing it.
+- Present the actual image for review and briefly report any visual or geometry limitations. Do not claim it is approved or final.
+- **Wait for explicit human approval before publishing the image as the final asset.** A successful generation is not automatically approval.
+- After approval, save the approved master to `assets/images/<ASSET-ID>.png` (example: `assets/images/AHQ-FUR-001.png`). Do not overwrite an approved file without permission.
 - Update **only** the corresponding JSON record:
   - `"image": "assets/images/<ASSET-ID>.png"`
   - `"IsImageGenerated": true`
-- Avoid committing discarded candidates to the published branch. Review candidates can live on a feature branch/PR until the selection is made.
+- Discard rejected candidates rather than committing them to the published catalogue. If the user explicitly requests a commit of an unapproved candidate, keep it under `assets/images/candidates/` and leave the JSON unchanged.
+- Do **not** create a branch or pull request unless the user explicitly asks for one. Work on the already checked-out branch; when the user requests a direct commit/push, use `main` only if that is the selected branch.
 - An approved first image becomes the **style anchor** for the rest of its base-prompt family. Do not change that family's art direction silently; propose a new prompt ID (for example, `dungeon-furniture-v2`) for a deliberate style change.
 
 ## Image files and data integrity
@@ -100,11 +101,11 @@ After publishing an approved image:
 1. Run `node scripts/validate-catalog.mjs`.
 2. Check that the PNG loads, the dimensions are reasonable, and alpha/transparency claims are accurate.
 3. Check that the catalogue displays the image for the intended asset and that other records are unchanged.
-4. For normal work, use a feature branch and pull request so changes can be reviewed before merging; do not merge or push directly to `main` unless explicitly requested.
-5. Report the asset ID/name, generator used, candidate/final paths, approval state, validation results and commit/PR link.
+4. Do not create branches or pull requests by default. Commit/push to the checked-out branch only when requested; this repository's normal publishing branch is `main`.
+5. Report the asset ID/name, generator used, candidate/final path, approval state, actual validation results and commit link (if committed).
 
 **Never claim that an image was generated, reviewed, approved, published or tested unless that step actually occurred.** If image-generation tools, file creation, image inspection or a GitHub push are unavailable, explicitly state what remains blocked.
 
 ## First-image special rule
 
-For **`AHQ-FUR-001` — Narrow Bookcase**, the existing prompt currently includes a narrow dark-oak bookcase with **three shelves, a closed lower plinth, scattered leather-bound books and carved uprights**. Respect this definition unless the user explicitly approves an empty-bookcase variant. The purpose of this first run is to select the visual style for subsequent furniture, **not** to generate the entire catalogue.
+For **`AHQ-FUR-001` — Narrow Bookcase**, the existing prompt currently includes a narrow dark-oak bookcase with **three shelves, a closed lower plinth, scattered leather-bound books and carved uprights**. Respect this definition unless the user explicitly approves an empty-bookcase variant. Generate **one image only** and present it for review; do not change the JSON or create a branch. The purpose of this first run is to select the visual style for subsequent furniture, **not** to generate the entire catalogue.
