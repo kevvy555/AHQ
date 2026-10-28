@@ -9,7 +9,7 @@ These instructions apply to agents working anywhere in this repository. For imag
 ## Source of truth
 
 - **`data/furniture.json` is canonical.** Do not invent furniture records or override their descriptions to suit an image.
-- Each furniture record has a permanent, unique `id`, `name`, `description`, `categoryId`, `imagePrompt`, `baseImagePrompt`, `IsImageGenerated` and `image`.
+- Each furniture record has a permanent, unique `id`, `name`, `description`, `categoryId`, `imagePrompt`, `baseImagePrompt`, `IsImageGenerated`, `image` and `model`.
 - Resolve `baseImagePrompt` as a **key** in the root `baseImagePrompts` dictionary. The value is the shared art direction, not an image filename.
 - Generate from **both** the resolved shared base prompt and the furniture-specific `imagePrompt`; use the record's `description` to cross-check intent.
 - Preserve existing IDs, categories, prompts and unrelated records. Do not rewrite shared prompts or silently change the requested furniture's contents.
@@ -39,15 +39,27 @@ assets/furniture/
 
 **Rules:**
 - Derive the directory as `assets/furniture/<category-id-path>/<ASSET-ID>/`; for example `assets/furniture/storage/bookcases/AHQ-FUR-001/`.
-- Each of the initial 40 models has an `images/.gitkeep` marker to make its empty folder visible in Git. Other subfolders are created only when there are files to store in them.
+- Each of the initial 40 models has both `images/.gitkeep` and `models/.gitkeep` markers to make its image and GLB folders visible in Git. Other subfolders are created only when there are files to store in them.
 - The ID is stable even if an item's display name changes. Never organise by name or by the JSON array index.
 - Keep **all** assets for an item in its model directory: published/reference images under `images/`, generated 3D files under `models/`, maps under `textures/`, and editable files under `source/`.
 - Use `images/primary.png` as the canonical approved website image. Store other variants in `images/` and review candidates in `images/candidates/`, but do not refer to an unapproved candidate in the JSON.
 - The JSON `image` must be a repository-relative path into that **same asset ID's own `images/` directory**. A pending model has `image: null`.
 - Do not put new assets in the obsolete shared `assets/images/` directory.
 - When moving a model to a different category, migrate its entire folder and JSON image path together.
-- If adding a new model, create its category-mirrored model directory with `images/.gitkeep` in the same change.
+- When adding a new furniture entry, create its category-mirrored asset directory with both `images/.gitkeep` and `models/.gitkeep` in the same change.
 - The browser's `safeImagePath` check and `scripts/validate-catalog.mjs` enforce the new paths. Update both together if the schema ever changes.
+
+## 3D GLB asset workflow
+
+- Every furniture record has a separate optional `model` field. It must be `null` until a real, reviewed GLB is available. This field is **independent** of `image` and `IsImageGenerated`.
+- Save the published GLB within the same model directory as its corresponding images, under `models/primary.glb`, for example `assets/furniture/storage/bookcases/AHQ-FUR-001/models/primary.glb`.
+- Other GLB variants may be kept in the same `models/` directory; only the file referenced by `model` is displayed on the website.
+- Prefer self-contained glTF 2.0 binary **GLB** exports with geometry, materials and textures embedded. Avoid external file dependencies; GitHub Pages serves files statically.
+- Check that the file exists and actually opens in the viewer. The JSON validator checks paths, file existence and the GLB binary header, but does **not** validate mesh quality or successful WebGL rendering.
+- Before publishing, inspect the 3D object's orientation, dimensions, mesh integrity, materials, texture clarity, geometry and file size. Seek approval before replacing an existing primary GLB.
+- Adding or updating a 3D model must not change the published image path or `IsImageGenerated` unless separately requested.
+- The website provides Image and 3D Model views. A missing GLB shows a placeholder and must not be represented as a generated model.
+- After adding a GLB, run `node scripts/validate-catalog.mjs` and verify the 3D tab on the hosted website. Do not create branches or PRs unless explicitly requested.
 
 ## Workflow for each furniture asset
 
