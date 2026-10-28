@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141511">
+  <meta name="description" content="Browse the AHQ collection of medieval fantasy furniture concepts and generation prompts.">
+  <title>AHQ | Furniture Archive</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to furniture details</a>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><span>AHQ</span></div>
+      <div class="brand-text"><span class="brand-title">ADVANCED HEROQUEST</span><span class="brand-subtitle">THE FURNITURE ARCHIVE</span></div>
+    </div>
+    <div class="header-right">
+      <span class="header-tag">A catalogue of dungeon furnishings</span>
+      <a class="repo-link" href="https://github.com/kevvy555/AHQ" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a>
+      <button class="mobile-menu" id="menuToggle" type="button" aria-controls="sidebar" aria-expanded="false">Browse collection</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar" aria-label="Furniture navigation">
+      <div class="sidebar-intro">
+        <span class="eyebrow">THE COLLECTION</span>
+        <h2>Furniture <em>index</em></h2>
+        <p>Objects, furnishings &amp; curiosities for the world of Advanced HeroQuest.</p>
+      </div>
+
+      <div class="sidebar-search">
+        <label for="searchInput">SEARCH THE ARCHIVE</label>
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg>
+          <input id="searchInput" type="search" placeholder="Find furniture..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="sidebar-filters" role="group" aria-label="Artwork filters">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">All items</button>
+        <button class="filter" type="button" data-filter="pending" aria-pressed="false">Needs art</button>
+        <button class="filter" type="button" data-filter="generated" aria-pressed="false">Generated</button>
+      </div>
+
+      <div class="nav-heading"><span>CATEGORIES</span><span id="visibleCount">—</span></div>
+      <nav id="categoryTree" class="category-tree" aria-label="Furniture categories"></nav>
+      <div class="sidebar-bottom">
+        <div class="mini-divider"></div>
+        <div class="library-stats"><div><strong id="totalCount">—</strong><span>Catalogue entries</span></div><div><strong id="artCount">—</strong><span>With artwork</span></div></div>
+        <p>DESIGNED FOR THE DUNGEON</p>
+      </div>
+    </aside>
+
+    <main class="main-content" id="mainContent">
+      <div class="main-inner">
+        <div class="content-bar">
+          <div class="breadcrumbs" id="breadcrumbs">ARCHIVE / FURNITURE</div>
+          <div class="entry-controls">
+            <span id="entryPosition" class="entry-position"></span>
+            <button id="previousButton" class="icon-button" type="button" aria-label="Previous item" title="Previous item">←</button>
+            <button id="nextButton" class="icon-button" type="button" aria-label="Next item" title="Next item">→</button>
+          </div>
+        </div>
+
+        <div id="errorState" class="error-state" hidden role="alert"></div>
+        <div id="emptyState" class="empty-state" hidden>
+          <span class="empty-icon" aria-hidden="true">◇</span>
+          <h1>No furniture found</h1>
+          <p>Try a different search or change the artwork filter.</p>
+          <button id="resetFilters" class="outline-button" type="button">Show all furniture</button>
+        </div>
+
+        <div id="assetContent">
+          <div class="asset-title-row">
+            <div>
+              <div class="eyebrow asset-eyebrow"><span class="gold-rule"></span> ASSET COLLECTION <span class="eyebrow-dot">◆</span> <span id="assetCategory">FURNITURE</span></div>
+              <h1 id="assetName">Furniture archive</h1>
+              <p class="asset-subheading" id="assetSubtitle"></p>
+            </div>
+            <span id="statusBadge" class="status-badge pending">Awaiting artwork</span>
+          </div>
+
+          <section class="preview-panel" aria-label="Asset image preview">
+            <div class="panel-heading"><span>01 <span class="panel-heading-divider">/</span> IMAGE PREVIEW</span><span id="previewLabel">CONCEPT PENDING</span></div>
+            <div class="art-stage" id="artStage"></div>
+            <div class="preview-bottom"><span id="previewCaption">A visual will appear here once generated and added to the archive.</span><span class="preview-format">ASSET / 3D REFERENCE</span></div>
+          </section>
+
+          <section class="record-section" aria-label="Furniture details">
+            <div class="section-title"><div><span class="eyebrow">02 / THE RECORD</span><h2>Asset <em>details</em></h2></div><button class="outline-button" type="button" id="copyFullPrompt">Copy combined prompt <span aria-hidden="true">↗</span></button></div>
+            <dl class="metadata" id="metadata"></dl>
+          </section>
+
+          <section class="prompt-section" aria-label="Image generation prompts">
+            <div class="section-title"><div><span class="eyebrow">03 / ART DIRECTION</span><h2>Generation <em>prompts</em></h2></div></div>
+            <div class="prompt-card">
+              <div class="prompt-top"><div><span class="prompt-number">A</span><strong>Base image prompt</strong><span class="prompt-id" id="basePromptId"></span></div><button type="button" class="copy-button" id="copyBasePrompt">Copy prompt</button></div>
+              <p id="basePromptText" class="prompt-content"></p>
+              <div class="prompt-footnote">Shared art direction — edit this prompt once in the JSON to keep the entire set consistent.</div>
+            </div>
+            <div class="prompt-card">
+              <div class="prompt-top"><div><span class="prompt-number">B</span><strong>Furniture image prompt</strong></div><button type="button" class="copy-button" id="copyImagePrompt">Copy prompt</button></div>
+              <p id="imagePromptText" class="prompt-content"></p>
+              <div class="prompt-footnote">Unique object description — combine with the base prompt when generating an image.</div>
+            </div>
+          </section>
+          <footer class="page-footer"><span>AHQ FURNITURE ARCHIVE</span><span>ONE OBJECT AT A TIME <span aria-hidden="true">✦</span></span></footer>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>
