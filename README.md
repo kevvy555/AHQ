@@ -1,5 +1,100 @@
-# AHQ Furniture Catalogue
+# Advanced HeroQuest — Furniture Archive
 
-A static, JSON-driven catalogue of furniture and dungeon props for Advanced HeroQuest.
+A dependency-free, static furniture catalogue for the Advanced HeroQuest game project. Browse a category tree on the left, then view a furniture image (or its name when artwork is absent), metadata and copyable image-generation prompts on the right.
 
-The website is intended for GitHub Pages. See the site files and `data/furniture.json` for catalogue entries.
+**Repository:** https://github.com/kevvy555/AHQ
+
+**GitHub Pages URL after enabling Pages:** https://kevvy555.github.io/AHQ/
+
+## Publish on GitHub Pages
+
+The site is already in the root of the `main` branch and requires **no build step**.
+
+1. Open the repository's **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select **main** and **/(root)**, then save.
+4. Once GitHub finishes deploying, open https://kevvy555.github.io/AHQ/.
+
+Pages is not automatically activated by committing files. The repository owner needs to perform the one-time setting above, unless it is already configured.
+
+## Project files
+
+| File | Purpose |
+| --- | --- |
+| `index.html` | Page structure |
+| `assets/styles.css` | Responsive dark-fantasy design |
+| `assets/app.js` | Reads JSON and renders tree, search, image, details and prompts |
+| `data/furniture.json` | **The entire editable furniture catalogue** |
+| `scripts/validate-catalog.mjs` | Validates IDs, categories, prompts and image references |
+| `.github/workflows/validate-catalog.yml` | Runs the validator when changes are pushed or proposed |
+
+There are **40 starter entries** across storage, tables, seating, sleeping, lighting, utility and arcane furniture. All have `IsImageGenerated: false` and `image: null`, because no images have been generated or added yet.
+
+## Edit or add a piece of furniture
+
+Edit `data/furniture.json` in GitHub or a code editor. Each model has the following fields:
+
+```json
+{
+  "id": "AHQ-FUR-001",
+  "name": "Narrow Bookcase",
+  "categoryId": "bookcases",
+  "IsImageGenerated": false,
+  "description": "A compact, upright shelf unit for tight corridors or small studies.",
+  "imagePrompt": "A narrow dark oak bookcase with three shelves...",
+  "baseImagePrompt": "dungeon-furniture-v1",
+  "image": null
+}
+```
+
+- **id:** Permanent unique model/image record identifier. Do not reuse or change existing IDs.
+- **name:** Displayed in the category tree and above the image.
+- **categoryId:** A leaf category ID from `categories` in the same JSON file.
+- **IsImageGenerated:** Boolean indicating whether the image-generation stage has been completed.
+- **description:** What the furniture is for, shown in the details panel.
+- **imagePrompt:** Details specific to this one object.
+- **baseImagePrompt:** Identifier of a shared prompt in `baseImagePrompts`. The page resolves the ID into its full text. This keeps the entire set visually coherent without repeating lengthy prompts on every record.
+- **image:** Relative path to a local PNG/JPG/WebP/AVIF, or `null` when there is no image. Paths must start with `assets/images/`.
+
+When you generate an image, save it to (for example) `assets/images/AHQ-FUR-001.webp`, then update the entry:
+
+```json
+"IsImageGenerated": true,
+"image": "assets/images/AHQ-FUR-001.webp"
+```
+
+If `image` is `null` (or fails to load), the catalogue displays the **model name instead of an image**, even if the generation flag is true.
+
+### Reusable prompts and visual consistency
+
+The JSON includes a `baseImagePrompts` object with named art directions. Every model links to one using `baseImagePrompt`. You can change an entire furniture set by editing its base prompt once, or introduce a new named base prompt for a different style or set.
+
+The **Copy combined prompt** control assembles the full shared art direction followed by the furniture-specific description. There are also separate copy controls for each prompt.
+
+For useful future 3D conversion, make source images depict a **single isolated object** with unobstructed geometry and consistent camera/lighting. The prompts are concept art instructions; this website does not generate images or 3D meshes automatically.
+
+## Run and validate locally
+
+The browser must load JSON over HTTP; opening `index.html` directly with a `file://` URL will not work.
+
+From the repository root:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000/ in your browser.
+
+The JSON validator uses Node.js 22+ and requires no npm dependencies:
+
+```bash
+node scripts/validate-catalog.mjs
+```
+
+GitHub Actions runs this validation on pushes to `main` and on pull requests.
+
+## Current scope and future extensions
+
+This initial release is a **read-only catalogue**: to persist edits, modify the JSON and commit the changed file. Search, artwork status filters, deep links to models via `#AHQ-FUR-001`, responsive layout, and prompt copying work without any backend.
+
+Potential future data fields, when needed: model footprint/dimensions for dungeon tiles, 3D file path (GLB), generation history/variants, and a workflow status beyond the simple image-generated flag. An in-browser editor that saves back to GitHub would require authentication and a separate write integration.
