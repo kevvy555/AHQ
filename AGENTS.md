@@ -28,7 +28,9 @@ assets/furniture/
           primary.png              # approved image used by the website
           candidates/              # optional unapproved review images
           alternate-01.png         # optional retained alternative
-        models/                    # 3D outputs, GLB / OBJ / etc.
+        models/
+          AHQ-FUR-001-Narrow-Bookcase.glb  # website 3D preview
+          AHQ-FUR-001-Narrow-Bookcase.stl  # STL reference only
         textures/                  # texture maps and materials
         source/                    # editable or intermediate project files
   tables/
@@ -52,7 +54,9 @@ assets/furniture/
 ## 3D GLB asset workflow
 
 - Every furniture record has a separate optional `model` field. It must be `null` until a real, reviewed GLB is available. This field is **independent** of `image` and `IsImageGenerated`.
-- Save the published GLB within the same model directory as its corresponding images, under `models/primary.glb`, for example `assets/furniture/storage/bookcases/AHQ-FUR-001/models/primary.glb`.
+- **Name 3D files after the furniture object depicted, not generically `primary` or `reference`.** Use `<ASSET-ID>-<Furniture-Name>.<ext>`: prefix the permanent asset ID and follow it with a hyphenated, filename-safe version of the item's `name` field (spaces become hyphens; omit punctuation). Use the same filename stem for matching GLB and STL files.
+- For Narrow Bookcase use `models/AHQ-FUR-001-Narrow-Bookcase.glb` for the website model and `models/AHQ-FUR-001-Narrow-Bookcase.stl` for the reference mesh. Store both in `assets/furniture/storage/bookcases/AHQ-FUR-001/models/`. The STL must not be referenced by the website's `model` field.
+- The `model` field references the exact actual GLB path, **not a presumed `primary.glb` filename**. If a furniture name changes later, leave existing approved files and their paths intact unless explicitly migrating them, to avoid broken references.
 - Other GLB variants may be kept in the same `models/` directory; only the file referenced by `model` is displayed on the website.
 - Prefer self-contained glTF 2.0 binary **GLB** exports with geometry, materials and textures embedded. Avoid external file dependencies; GitHub Pages serves files statically.
 - Check that the file exists and actually opens in the viewer. The JSON validator checks paths, file existence and the GLB binary header, but does **not** validate mesh quality or successful WebGL rendering.
