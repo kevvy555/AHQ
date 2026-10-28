@@ -2,6 +2,7 @@ const byId = (id) => document.getElementById(id);
 
 let catalogue = null;
 let selectedId = null;
+let previewMode = "image";
 let activeFilter = "all";
 let searchText = "";
 let visibleItems = [];
@@ -40,6 +41,9 @@ function validateCatalogue(data) {
         !Object.hasOwn(data.baseImagePrompts, item.baseImagePrompt)) {
       throw new Error("Invalid furniture entry: " + (item.id || "unknown"));
     }
+    if (!Object.hasOwn(item, "model") || (item.model !== null && !safeModelPath(item.model, item))) {
+      throw new Error("Invalid 3D model path on " + item.id);
+    }
     if (seen.has(item.id)) throw new Error("Duplicate furniture ID: " + item.id);
     seen.add(item.id);
     if (item.image !== null && item.image !== undefined && !safeImagePath(item.image, item)) {
@@ -56,6 +60,16 @@ function safeImagePath(value, item) {
     "/" + item.id + "/images/";
   return value.startsWith(prefix) &&
     /^[a-z0-9][a-z0-9_-]*\.(?:png|jpe?g|webp|avif)$/i.test(value.slice(prefix.length));
+}
+
+function safeModelPath(value, item) {
+  if (typeof value !== "string") return false;
+  const trail = categoryPaths.get(item.categoryId);
+  if (!trail) return false;
+  const prefix = "assets/furniture/" + trail.map((category) => category.id).join("/") +
+    "/" + item.id + "/models/";
+  return value.startsWith(prefix) &&
+    /^[a-z0-9][a-z0-9_-]*\.glb$/i.test(value.slice(prefix.length));
 }
 
 function filteredItems() {
@@ -80,6 +94,7 @@ function setMobileMenu(open) {
 }
 
 function navigateTo(itemId, updateUrl = true) {
+  if (selectedId !== itemId) previewMode = "image";
   selectedId = itemId;
   if (updateUrl && itemId) {
     const newHash = "#" + encodeURIComponent(itemId);
@@ -93,6 +108,7 @@ function syncSelection() {
   visibleItems = filteredItems();
   if (visibleItems.length && !visibleItems.some((item) => item.id === selectedId)) {
     selectedId = visibleItems[0].id;
+    previewMode = "image";
     history.replaceState(null, "", "#" + encodeURIComponent(selectedId));
   }
   render();
@@ -184,12 +200,66 @@ function placeholder(item) {
   return wrapper;
 }
 
+function modelPlaceholder(item, message) {
+  const wrapper = element("div", "placeholder");
+  wrapper.append(element("div", "placeholder-symbol", "◇"),
+    element("div", "placeholder-caption", "3D MODEL"),
+    element("div", "placeholder-title", item.name),
+    element("p", "placeholder-hint", message));
+  return wrapper;
+}
+
+function setPreviewMode(mode) {
+  if (mode !== "image" && mode !== "model") return;
+  previewMode = mode;
+  const item = visibleItems.find((entry) => entry.id === selectedId);
+  if (item) renderArtwork(item);
+}
+
 function renderArtwork(item) {
   const stage = byId("artStage");
   stage.replaceChildren();
+  for (const mode of ["image", "model"]) {
+    const button = byId(mode === "image" ? "viewImageButton" : "viewModelButton");
+    const active = previewMode === mode;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  }
   for (const corner of ["tl", "tr", "bl", "br"]) {
     stage.appendChild(element("span", "corner " + corner));
   }
+  if (previewMode === "model") {
+    byId("previewLabel").textContent = item.model ? "3D MODEL LOADING" : "MODEL PENDING";
+    byId("previewCaption").textContent = item.model
+      ? "Drag to rotate • Scroll or pinch to zoom."
+      : "No 3D model has been added to this furniture asset yet.";
+    if (!item.model) {
+      stage.appendChild(modelPlaceholder(item, "No GLB model available yet"));
+      return;
+    }
+    const viewer = element("model-viewer", "glb-viewer");
+    viewer.setAttribute("alt", "Interactive 3D model of " + item.name);
+    viewer.setAttribute("camera-controls", "");
+    viewer.setAttribute("touch-action", "pan-y");
+    viewer.setAttribute("shadow-intensity", "0.7");
+    viewer.setAttribute("environment-image", "neutral");
+    viewer.setAttribute("loading", "eager");
+    viewer.setAttribute("camera-orbit", "30deg 70deg auto");
+    viewer.addEventListener("load", () => {
+      if (!stage.contains(viewer)) return;
+      byId("previewLabel").textContent = "3D MODEL READY";
+    });
+    viewer.addEventListener("error", () => {
+      if (!stage.contains(viewer)) return;
+      viewer.replaceWith(modelPlaceholder(item, "Unable to load this GLB file"));
+      byId("previewLabel").textContent = "3D MODEL UNAVAILABLE";
+      byId("previewCaption").textContent = "The 3D model could not be loaded. Check the GLB file.";
+    });
+    viewer.setAttribute("src", new URL(item.model, document.baseURI).href);
+    stage.appendChild(viewer);
+    return;
+  }
+
   const image = item.image;
   if (image) {
     const picture = element("img");
@@ -198,6 +268,7 @@ function renderArtwork(item) {
     picture.loading = "eager";
     picture.decoding = "async";
     picture.addEventListener("error", () => {
+      if (!stage.contains(picture)) return;
       picture.replaceWith(placeholder(item));
       byId("previewLabel").textContent = "IMAGE FILE MISSING";
       byId("previewCaption").textContent = "The image path is set, but the file could not be loaded.";
@@ -245,7 +316,8 @@ function renderDetails() {
     metaRow("Category", path.map((category) => category.name).join(" / ")),
     metaRow("IsImageGenerated", item.IsImageGenerated, "status"),
     metaRow("Description", item.description),
-    metaRow("Image file", item.image || "Not yet assigned", item.image ? "code" : "text")
+    metaRow("Image file", item.image || "Not yet assigned", item.image ? "code" : "text"),
+    metaRow("3D model (GLB)", item.model || "Not yet assigned", item.model ? "code" : "text")
   );
   byId("basePromptId").textContent = item.baseImagePrompt;
   byId("basePromptText").textContent = baseText;
@@ -303,6 +375,8 @@ function readHashId() {
 }
 
 function bindEvents() {
+  byId("viewImageButton").addEventListener("click", () => setPreviewMode("image"));
+  byId("viewModelButton").addEventListener("click", () => setPreviewMode("model"));
   byId("searchInput").addEventListener("input", (event) => {
     searchText = event.target.value.trim().toLocaleLowerCase();
     syncSelection();
