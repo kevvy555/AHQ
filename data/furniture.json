@@ -104,7 +104,7 @@
       "imagePrompt": "A narrow dark oak bookcase with three shelves, a closed lower plinth, scattered leather-bound books and modest carved uprights; the furniture remains the sole hero object.",
       "baseImagePrompt": "dungeon-furniture-v1",
       "image": "assets/furniture/storage/bookcases/AHQ-FUR-001/images/primary.png",
-      "model": null
+      "model": "assets/furniture/storage/bookcases/AHQ-FUR-001/models/AHQ-FUR-001-Narrow-Bookcase.glb"
     },
     {
       "id": "AHQ-FUR-002",
