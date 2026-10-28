@@ -1,0 +1,499 @@
+{
+  "catalogVersion": 1,
+  "title": "AHQ Furniture Archive",
+  "description": "Concept-art catalogue of standalone medieval-fantasy furniture and dungeon props for Advanced HeroQuest.",
+  "baseImagePrompts": {
+    "dungeon-furniture-v1": "Create a single freestanding medieval-fantasy dungeon furniture prop in a cohesive Advanced HeroQuest-inspired art direction. Late-medieval European materials, dark weathered oak, subdued hand-forged iron, restrained tarnished brass, plausible construction, slightly exaggerated readable silhouettes, high-quality stylised hand-painted game-asset concept. Present exactly one object, centered and completely visible, in a clear three-quarter view with an orthographic-like camera, soft neutral studio lighting and a plain neutral or transparent background. Preserve consistent texture scale, proportions, shadow softness, lighting direction and visual style across this furniture collection. No room, no floor tiles, no characters, no labels, no text, no watermarks, no unrelated props.",
+    "ritual-furniture-v1": "Create a single standalone ceremonial dungeon furnishing in the same cohesive Advanced HeroQuest-inspired, stylised hand-painted 3D game-asset visual language as the main furniture collection. Use worn black stone, aged bronze, limited engraved detailing and credible heavy construction, with clear silhouettes and low visual noise. Exactly one centered object, fully visible, orthographic-like three-quarter view, soft neutral studio lighting and a plain neutral or transparent background. Keep consistent scale, light, texture detail and presentation across the arcane set. No room, floor tiles, characters, writing, watermarks or extra props."
+  },
+  "categories": [
+    {
+      "id": "storage",
+      "name": "Storage",
+      "children": [
+        {
+          "id": "bookcases",
+          "name": "Bookcases & shelves"
+        },
+        {
+          "id": "chests",
+          "name": "Chests & trunks"
+        },
+        {
+          "id": "containers",
+          "name": "Containers & cupboards"
+        }
+      ]
+    },
+    {
+      "id": "tables",
+      "name": "Tables & workstations",
+      "children": [
+        {
+          "id": "dining-tables",
+          "name": "Dining tables"
+        },
+        {
+          "id": "workstations",
+          "name": "Desks & workbenches"
+        }
+      ]
+    },
+    {
+      "id": "seating",
+      "name": "Seating",
+      "children": [
+        {
+          "id": "chairs",
+          "name": "Chairs & stools"
+        },
+        {
+          "id": "benches",
+          "name": "Benches"
+        }
+      ]
+    },
+    {
+      "id": "sleeping",
+      "name": "Sleeping",
+      "children": [
+        {
+          "id": "beds",
+          "name": "Beds & bedding"
+        }
+      ]
+    },
+    {
+      "id": "lighting-group",
+      "name": "Lighting",
+      "children": [
+        {
+          "id": "lighting",
+          "name": "Lighting fixtures"
+        }
+      ]
+    },
+    {
+      "id": "display",
+      "name": "Display & utility",
+      "children": [
+        {
+          "id": "racks",
+          "name": "Racks & stands"
+        }
+      ]
+    },
+    {
+      "id": "specialty",
+      "name": "Specialty",
+      "children": [
+        {
+          "id": "arcane",
+          "name": "Arcane furnishings"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "AHQ-FUR-001",
+      "name": "Narrow Bookcase",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A compact, upright shelf unit for tight corridors or small studies.",
+      "imagePrompt": "A narrow dark oak bookcase with three shelves, a closed lower plinth, scattered leather-bound books and modest carved uprights; the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-002",
+      "name": "Tall Bookcase",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A full-height library bookcase suited to a wizard's study.",
+      "imagePrompt": "A tall six-shelf oak bookcase with a crown moulding, a few old leather books and rolled scrolls, sturdy square proportions and worn edges.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-003",
+      "name": "Wide Bookcase",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A broad library unit for large rooms.",
+      "imagePrompt": "A wide two-bay oak bookcase with four shelves per bay, subtle central divider, old books and a handful of parchment rolls; readable from a distant game camera.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-004",
+      "name": "Wall Shelf",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A simple shelf for books and small supplies.",
+      "imagePrompt": "A single stout wall-mounted wooden shelf with iron brackets and a few stacked books, shown as one separate wall prop, without any wall geometry.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-005",
+      "name": "Scroll Rack",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A purpose-built storage rack for parchment.",
+      "imagePrompt": "A freestanding waist-high oak scroll rack with horizontal cubbies containing rolled parchment, a slightly tilted top and iron corner straps.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-006",
+      "name": "Glass-Front Cabinet",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "An enclosed cabinet for valuable books and objects.",
+      "imagePrompt": "A tall oak cabinet with two small leaded-glass upper doors, closed wooden lower cupboards and understated iron handles.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-007",
+      "name": "Plain Wooden Chest",
+      "categoryId": "chests",
+      "IsImageGenerated": false,
+      "description": "A basic storage chest for rooms and storerooms.",
+      "imagePrompt": "A rectangular rough-hewn oak chest with a domed hinged lid, simple iron latch, visible plank construction and minimal decoration, closed.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-008",
+      "name": "Iron-Bound Chest",
+      "categoryId": "chests",
+      "IsImageGenerated": false,
+      "description": "A reinforced chest intended for guarded stores.",
+      "imagePrompt": "A medium oak storage chest with strong iron bands wrapping the body, heavy corner brackets, a large lock plate and a closed flat lid.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-009",
+      "name": "Treasure Chest",
+      "categoryId": "chests",
+      "IsImageGenerated": false,
+      "description": "A more decorative lockable chest.",
+      "imagePrompt": "A closed, ornate dungeon treasure chest of dark wood, brass-trimmed curved lid, heavy central lock and modest embossed patterns; no treasure spilling out.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-010",
+      "name": "Travel Trunk",
+      "categoryId": "chests",
+      "IsImageGenerated": false,
+      "description": "A portable trunk for an adventurer's quarters.",
+      "imagePrompt": "A squat rectangular leather-and-oak travel trunk with worn leather straps, two side handles and small corner guards; lid shut.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-011",
+      "name": "Wooden Barrel",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "General-purpose storage for food or drink.",
+      "imagePrompt": "A single standing oak barrel with a slightly bulging stave profile, two aged iron hoops and a plugged top, completely isolated.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-012",
+      "name": "Wooden Crate",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "A sturdy crate for a dungeon storeroom.",
+      "imagePrompt": "A single square wooden shipping crate with diagonal brace planks, rough nail heads and reinforced corners; no extra crates.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-013",
+      "name": "Wicker Basket",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "A small container for provisions.",
+      "imagePrompt": "A deep handwoven wicker basket with a simple curved carry handle, muted natural reed colour and believable thick weave.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-014",
+      "name": "Storage Cupboard",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "A practical cabinet for everyday items.",
+      "imagePrompt": "A squat two-door oak cupboard with a flat top, inset door panels, two iron pulls and short block feet.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-015",
+      "name": "Small Square Table",
+      "categoryId": "dining-tables",
+      "IsImageGenerated": false,
+      "description": "A useful table for a chamber or inn.",
+      "imagePrompt": "A small square four-legged oak table with a sturdy plank top, chunky legs and plain cross rails, empty tabletop.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-016",
+      "name": "Round Tavern Table",
+      "categoryId": "dining-tables",
+      "IsImageGenerated": false,
+      "description": "A compact table for a tavern or guard room.",
+      "imagePrompt": "A round dark oak tavern table with thick circular top, central pedestal, broad tripod foot and worn edges, empty tabletop.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-017",
+      "name": "Long Banquet Table",
+      "categoryId": "dining-tables",
+      "IsImageGenerated": false,
+      "description": "A large dining table for a great hall.",
+      "imagePrompt": "A long rectangular medieval trestle dining table with thick timber boards and two substantial trestle supports, no table settings.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-018",
+      "name": "Trestle Table",
+      "categoryId": "dining-tables",
+      "IsImageGenerated": false,
+      "description": "A plain movable table for shared rooms.",
+      "imagePrompt": "A simple long plank-top table balanced on two A-frame wooden trestles and one visible lengthwise support, without objects.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-019",
+      "name": "Writing Desk",
+      "categoryId": "workstations",
+      "IsImageGenerated": false,
+      "description": "A desk for scribes and scholars.",
+      "imagePrompt": "A modest medieval oak writing desk with an angled writing surface, one shallow drawer, small side compartments and worn edges; desk only.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-020",
+      "name": "Carpenter's Workbench",
+      "categoryId": "workstations",
+      "IsImageGenerated": false,
+      "description": "A heavy-duty work surface.",
+      "imagePrompt": "A stout wooden workshop bench with an uneven working top, timber vice, single lower shelf and a few fixed iron fixtures; no loose tools.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-021",
+      "name": "Alchemist's Worktable",
+      "categoryId": "workstations",
+      "IsImageGenerated": false,
+      "description": "A specialist table for laboratory rooms.",
+      "imagePrompt": "A narrow oak alchemy worktable with raised back shelf, inset metal-ring bottle holders and stained work surface, no vessels or ingredients.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-022",
+      "name": "Lectern",
+      "categoryId": "workstations",
+      "IsImageGenerated": false,
+      "description": "A freestanding reading stand.",
+      "imagePrompt": "A tall wooden reading lectern with a steeply sloped book rest, carved center post, wide stabilising foot and a narrow bottom lip.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-023",
+      "name": "Wooden Stool",
+      "categoryId": "chairs",
+      "IsImageGenerated": false,
+      "description": "A simple backless seat.",
+      "imagePrompt": "A low three-legged medieval oak stool with round worn seat, slightly splayed legs and no backrest.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-024",
+      "name": "Simple Chair",
+      "categoryId": "chairs",
+      "IsImageGenerated": false,
+      "description": "A functional everyday chair.",
+      "imagePrompt": "A straight-backed oak dining chair with a flat wooden seat, four sturdy legs and a plain ladder back.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-025",
+      "name": "High-Back Chair",
+      "categoryId": "chairs",
+      "IsImageGenerated": false,
+      "description": "A substantial chair for a senior figure.",
+      "imagePrompt": "A dark oak high-backed chair with a tall panelled back, broad arms, carved posts and a plain wooden seat.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-026",
+      "name": "Upholstered Chair",
+      "categoryId": "chairs",
+      "IsImageGenerated": false,
+      "description": "A more comfortable chair for an affluent room.",
+      "imagePrompt": "A medieval oak armchair with faded burgundy upholstered seat and back, rounded wooden arms and small aged brass studs.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-027",
+      "name": "Lord's Throne",
+      "categoryId": "chairs",
+      "IsImageGenerated": false,
+      "description": "A prominent ceremonial seat.",
+      "imagePrompt": "A weighty dark oak throne with a very high arched back, angular carved armrests, muted red velvet cushion and restrained heraldic carving, no symbols or letters.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-028",
+      "name": "Wooden Bench",
+      "categoryId": "benches",
+      "IsImageGenerated": false,
+      "description": "A long basic communal seat.",
+      "imagePrompt": "A plain three-person oak bench with long plank seat, four legs and sturdy cross braces, without backrest.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-029",
+      "name": "Padded Bench",
+      "categoryId": "benches",
+      "IsImageGenerated": false,
+      "description": "A cushioned bench for private chambers.",
+      "imagePrompt": "A short oak bench with a low back and a single faded green upholstered seat cushion, solid square feet.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-030",
+      "name": "Straw Pallet",
+      "categoryId": "beds",
+      "IsImageGenerated": false,
+      "description": "An inexpensive sleeping place.",
+      "imagePrompt": "A low rectangular mattress made from rough ticking stuffed with straw, a simple wool blanket and rolled pillow, no wooden frame.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-031",
+      "name": "Simple Bed",
+      "categoryId": "beds",
+      "IsImageGenerated": false,
+      "description": "A standard bed for barracks or bedrooms.",
+      "imagePrompt": "A single wooden bed with short headboard, rough linen mattress, rolled pillow and folded muted blanket, simple oak rails.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-032",
+      "name": "Four-Poster Bed",
+      "categoryId": "beds",
+      "IsImageGenerated": false,
+      "description": "A grand bed for an important chamber.",
+      "imagePrompt": "A substantial dark oak four-poster bed with carved corner posts, simple overhead frame, restrained burgundy curtains drawn back and a plain linen mattress.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-033",
+      "name": "Wall Torch Sconce",
+      "categoryId": "lighting",
+      "IsImageGenerated": false,
+      "description": "A wall fixture that holds a torch.",
+      "imagePrompt": "A single iron wall torch sconce with a simple bracket plate and tubular torch holder, no wall and no flame.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-034",
+      "name": "Standing Candelabrum",
+      "categoryId": "lighting",
+      "IsImageGenerated": false,
+      "description": "A freestanding holder for candles.",
+      "imagePrompt": "An iron floor-standing candelabrum with a tripod base and five branching candle holders containing unlit off-white candles.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-035",
+      "name": "Lantern Stand",
+      "categoryId": "lighting",
+      "IsImageGenerated": false,
+      "description": "A portable-style lantern holder on a stand.",
+      "imagePrompt": "A standing wooden post with a forged iron hook carrying one closed medieval metal-and-glass lantern, unlit, shown as a single coherent prop.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-036",
+      "name": "Weapon Rack",
+      "categoryId": "racks",
+      "IsImageGenerated": false,
+      "description": "A freestanding rack for weapons.",
+      "imagePrompt": "A waist-height oak weapon rack with upright slots and horizontal rails, empty, built for swords and polearms; no weapons included.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-037",
+      "name": "Armour Stand",
+      "categoryId": "racks",
+      "IsImageGenerated": false,
+      "description": "A display frame for a suit of armour.",
+      "imagePrompt": "A simple free-standing timber armour mannequin with broad shoulders, straight central support and weighted square base, no armour.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-038",
+      "name": "Coat Rack",
+      "categoryId": "racks",
+      "IsImageGenerated": false,
+      "description": "A practical rack for cloaks and hats.",
+      "imagePrompt": "A freestanding dark oak coat stand with a central turned shaft, four sturdy iron coat hooks and splayed wooden feet, no garments.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-039",
+      "name": "Ritual Pedestal",
+      "categoryId": "arcane",
+      "IsImageGenerated": false,
+      "description": "A small ceremonial furnishing for mystical chambers.",
+      "imagePrompt": "A single waist-high hexagonal black-stone pedestal with inset brass bands, shallow circular recess on top and extremely subtle ancient engravings; no glow or symbols.",
+      "baseImagePrompt": "ritual-furniture-v1",
+      "image": null
+    },
+    {
+      "id": "AHQ-FUR-040",
+      "name": "Divination Table",
+      "categoryId": "arcane",
+      "IsImageGenerated": false,
+      "description": "A specialist arcane work surface.",
+      "imagePrompt": "A small round dark-stone divination table with three carved legs, smooth inset slate centre and delicate aged bronze inlay; bare tabletop.",
+      "baseImagePrompt": "ritual-furniture-v1",
+      "image": null
+    }
+  ]
+}
