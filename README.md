@@ -43,7 +43,7 @@ assets/furniture/
           primary.png            # approved published image
           candidates/            # optional review images
           alternate-01.png       # optional extra image
-        models/                  # 3D outputs, create when needed
+        models/                  # 3D files named after the furniture item
         textures/                # texture maps, create when needed
         source/                  # editables / intermediates, create when needed
       AHQ-FUR-002/
@@ -108,14 +108,16 @@ The preview panel includes **Image** and **3D Model** controls. The image remain
 When a GLB has been generated and approved, save it in the existing category-mirrored folder, for example:
 
 ```text
-assets/furniture/storage/bookcases/AHQ-FUR-001/models/primary.glb
+assets/furniture/storage/bookcases/AHQ-FUR-001/models/AHQ-FUR-001-Narrow-Bookcase.glb
 ```
 
 Set the corresponding furniture record to:
 
 ```json
-"model": "assets/furniture/storage/bookcases/AHQ-FUR-001/models/primary.glb"
+"model": "assets/furniture/storage/bookcases/AHQ-FUR-001/models/AHQ-FUR-001-Narrow-Bookcase.glb"
 ```
+
+Use the naming convention `<ASSET-ID>-<Furniture-Name>.<ext>` for model files, with the furniture name turned into a hyphenated filename-safe slug. Matching exports share the same stem: `AHQ-FUR-001-Narrow-Bookcase.glb` is the interactive website model, while `AHQ-FUR-001-Narrow-Bookcase.stl` is stored for reference and is not displayed. Avoid generic names such as `primary.glb` or `reference.stl`. The website reads the actual GLB path from `model`; if the item's display name changes later, do not rename existing files without updating references.
 
 Keep `image` and `IsImageGenerated` unchanged. The validator enforces the model's asset-specific folder and checks the GLB container header/version/length. Model rendering and mesh quality must also be inspected manually. Prefer self-contained GLB exports with embedded textures.
 
