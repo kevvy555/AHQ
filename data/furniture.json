@@ -103,7 +103,7 @@
       "description": "A compact, upright shelf unit for tight corridors or small studies.",
       "imagePrompt": "A narrow dark oak bookcase with three shelves, a closed lower plinth, scattered leather-bound books and modest carved uprights; the furniture remains the sole hero object.",
       "baseImagePrompt": "dungeon-furniture-v1",
-      "image": "assets/images/AHQ-FUR-001.png"
+      "image": "assets/furniture/storage/bookcases/AHQ-FUR-001/images/primary.png"
     },
     {
       "id": "AHQ-FUR-002",

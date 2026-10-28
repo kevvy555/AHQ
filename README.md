@@ -28,7 +28,33 @@ Pages is not automatically activated by committing files. The repository owner n
 | `scripts/validate-catalog.mjs` | Validates IDs, categories, prompts and image references |
 | `.github/workflows/validate-catalog.yml` | Runs the validator when changes are pushed or proposed |
 
-There are **40 starter entries** across storage, tables, seating, sleeping, lighting, utility and arcane furniture. All have `IsImageGenerated: false` and `image: null`, because no images have been generated or added yet.
+There are **40 starter entries** across storage, tables, seating, sleeping, lighting, utility and arcane furniture. Items with no published image have `IsImageGenerated: false` and `image: null`.
+
+## Asset folders
+
+Every one of the **40 current models** has its own `images/` directory within a category-mirrored tree under `assets/furniture/`. Folder paths use category **IDs** from `data/furniture.json` and permanent furniture IDs:
+
+```text
+assets/furniture/
+  storage/
+    bookcases/
+      AHQ-FUR-001/
+        images/
+          primary.png            # approved published image
+          candidates/            # optional review images
+          alternate-01.png       # optional extra image
+        models/                  # 3D outputs, create when needed
+        textures/                # texture maps, create when needed
+        source/                  # editables / intermediates, create when needed
+      AHQ-FUR-002/
+        images/.gitkeep          # pending asset
+  tables/
+    dining-tables/
+      AHQ-FUR-015/
+        images/.gitkeep
+```
+
+The initial directories are tracked with `images/.gitkeep`; other per-model folders are created when populated. Each model may have many files, but `image` in JSON selects the **one primary image** rendered by the website. When adding a new asset or moving it to a category, maintain both its directory path and JSON reference. See `AGENTS.md` for all image-generation rules.
 
 ## Edit or add a piece of furniture
 
@@ -54,13 +80,13 @@ Edit `data/furniture.json` in GitHub or a code editor. Each model has the follow
 - **description:** What the furniture is for, shown in the details panel.
 - **imagePrompt:** Details specific to this one object.
 - **baseImagePrompt:** Identifier of a shared prompt in `baseImagePrompts`. The page resolves the ID into its full text. This keeps the entire set visually coherent without repeating lengthy prompts on every record.
-- **image:** Relative path to a local PNG/JPG/WebP/AVIF, or `null` when there is no image. Paths must start with `assets/images/`.
+- **image:** The path to the published PNG/JPG/WebP/AVIF inside this asset's category-mirrored `images/` directory, or `null` when no image exists.
 
-When you generate an image, save it to (for example) `assets/images/AHQ-FUR-001.webp`, then update the entry:
+When the generated image is approved, save it inside the asset's own folder (for example, `assets/furniture/storage/bookcases/AHQ-FUR-001/images/primary.png`), then update the entry:
 
 ```json
 "IsImageGenerated": true,
-"image": "assets/images/AHQ-FUR-001.webp"
+"image": "assets/furniture/storage/bookcases/AHQ-FUR-001/images/primary.png"
 ```
 
 If `image` is `null` (or fails to load), the catalogue displays the **model name instead of an image**, even if the generation flag is true.

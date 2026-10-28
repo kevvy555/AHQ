@@ -45,6 +45,16 @@ for (const [promptId, prompt] of Object.entries(prompts)) {
   if (!requiredText(promptId) || !requiredText(prompt)) fail("Empty base image prompt: " + promptId);
 }
 
+const categoryPaths = new Map();
+function indexPaths(categories, ancestry = []) {
+  for (const category of categories) {
+    const pathIds = [...ancestry, category.id];
+    categoryPaths.set(category.id, pathIds);
+    if (Array.isArray(category.children)) indexPaths(category.children, pathIds);
+  }
+}
+if (Array.isArray(catalog.categories)) indexPaths(catalog.categories);
+
 const itemIds = new Set();
 for (const item of Array.isArray(catalog.items) ? catalog.items : []) {
   if (!requiredText(item.id) || !requiredText(item.name)) fail("An item has no valid ID/name");
@@ -58,11 +68,21 @@ for (const item of Array.isArray(catalog.items) ? catalog.items : []) {
     fail(item.id + ": unknown baseImagePrompt ID " + item.baseImagePrompt);
   }
   if (!Object.hasOwn(item, "image")) fail(item.id + ": missing image field (use null until an image exists)");
+  const categoryTrail = categoryPaths.get(item.categoryId);
+  if (!categoryTrail) continue;
+  const modelDir = "assets/furniture/" + categoryTrail.join("/") + "/" + item.id;
+  if (!fs.existsSync(path.join(root, modelDir, "images"))) {
+    fail(item.id + ": missing model image directory: " + modelDir + "/images");
+  }
+  if (item.IsImageGenerated && !item.image) {
+    fail(item.id + ": generated flag requires an image file");
+  }
   if (item.image !== null && item.image !== undefined) {
-    const valid = typeof item.image === "string" &&
-      /^assets\/images\/[a-z0-9][a-z0-9_./-]*\.(?:png|jpe?g|webp|avif)$/i.test(item.image) &&
-      !item.image.split("/").includes("..");
-    if (!valid) fail(item.id + ": invalid image path");
+    const prefix = modelDir + "/images/";
+    const filename = typeof item.image === "string" && item.image.startsWith(prefix)
+      ? item.image.slice(prefix.length) : "";
+    const valid = /^[a-z0-9][a-z0-9_-]*\.(?:png|jpe?g|webp|avif)$/i.test(filename);
+    if (!valid) fail(item.id + ": image must be inside its own model images folder: " + prefix);
     else if (!fs.existsSync(path.join(root, item.image))) fail(item.id + ": image file does not exist: " + item.image);
   }
 }

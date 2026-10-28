@@ -42,16 +42,20 @@ function validateCatalogue(data) {
     }
     if (seen.has(item.id)) throw new Error("Duplicate furniture ID: " + item.id);
     seen.add(item.id);
-    if (item.image !== null && item.image !== undefined && !safeImagePath(item.image)) {
+    if (item.image !== null && item.image !== undefined && !safeImagePath(item.image, item)) {
       throw new Error("Invalid image path on " + item.id);
     }
   }
 }
 
-function safeImagePath(value) {
-  return typeof value === "string" &&
-    /^assets\/images\/[a-z0-9][a-z0-9_./-]*\.(?:png|jpe?g|webp|avif)$/i.test(value) &&
-    !value.split("/").includes("..");
+function safeImagePath(value, item) {
+  if (typeof value !== "string") return false;
+  const trail = categoryPaths.get(item.categoryId);
+  if (!trail) return false;
+  const prefix = "assets/furniture/" + trail.map((category) => category.id).join("/") +
+    "/" + item.id + "/images/";
+  return value.startsWith(prefix) &&
+    /^[a-z0-9][a-z0-9_-]*\.(?:png|jpe?g|webp|avif)$/i.test(value.slice(prefix.length));
 }
 
 function filteredItems() {
