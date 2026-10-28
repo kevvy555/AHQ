@@ -99,11 +99,11 @@
       "id": "AHQ-FUR-001",
       "name": "Narrow Bookcase",
       "categoryId": "bookcases",
-      "IsImageGenerated": false,
+      "IsImageGenerated": true,
       "description": "A compact, upright shelf unit for tight corridors or small studies.",
       "imagePrompt": "A narrow dark oak bookcase with three shelves, a closed lower plinth, scattered leather-bound books and modest carved uprights; the furniture remains the sole hero object.",
       "baseImagePrompt": "dungeon-furniture-v1",
-      "image": null
+      "image": "assets/images/AHQ-FUR-001.png"
     },
     {
       "id": "AHQ-FUR-002",
