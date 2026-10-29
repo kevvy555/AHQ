@@ -517,12 +517,12 @@
       "id": "AHQ-FUR-039",
       "name": "Ritual Pedestal",
       "categoryId": "arcane",
-      "IsImageGenerated": false,
+      "IsImageGenerated": true,
       "description": "A small ceremonial furnishing for mystical chambers.",
       "imagePrompt": "A single waist-high hexagonal black-stone pedestal with inset brass bands, shallow circular recess on top and extremely subtle ancient engravings; no glow or symbols.",
       "baseImagePrompt": "ritual-furniture-v1",
-      "image": null,
-      "model": null
+      "image": "assets/furniture/specialty/arcane/AHQ-FUR-039/images/primary.png",
+      "model": "assets/furniture/specialty/arcane/AHQ-FUR-039/models/AHQ-FUR-039-Ritual-Pedestal.glb"
     },
     {
       "id": "AHQ-FUR-040",
