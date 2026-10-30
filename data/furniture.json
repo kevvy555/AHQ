@@ -534,6 +534,116 @@
       "baseImagePrompt": "ritual-furniture-v1",
       "image": "assets/furniture/specialty/arcane/AHQ-FUR-040/images/primary.png",
       "model": null
+    },
+    {
+      "id": "AHQ-FUR-041",
+      "name": "Narrow Trinket Shelves",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A compact shelving unit displaying assorted fantasy curios and small dungeon trinkets.",
+      "imagePrompt": "A narrow dark oak shelving unit with three shelves, a solid lower plinth and modest carved uprights, containing a small assortment of fantasy trinkets such as potion bottles, crystals, a small skull, a goblet and curious relics; keep structural parts unobstructed and the furniture as the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-042",
+      "name": "Tall Trinket Shelves",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A tall shelving unit displaying magical curios, jars and dungeon artefacts.",
+      "imagePrompt": "A tall full-height dark oak shelving unit with four or five open shelves, sturdy medieval construction and subtle carved details, displaying fantasy trinkets such as potion bottles, jars, crystals, scroll cases, candles, a skull and small relics; each shelf is structurally plausible and the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-043",
+      "name": "Wide Trinket Shelves",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A broad shelving unit for a larger collection of fantasy curiosities.",
+      "imagePrompt": "A wide dark oak freestanding shelving unit with multiple open shelves, strong medieval construction and restrained carved details, displaying a varied collection of goblets, coloured crystals, potion bottles, candles, small relics and a skull; maintain distinct readable compartments and keep the furniture as the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-044",
+      "name": "Narrow Empty Shelves",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A compact empty shelving unit for general storage or display.",
+      "imagePrompt": "A narrow dark oak freestanding shelving unit with three entirely empty shelves, a solid lower plinth and modest carved uprights, with clear readable construction and no books, containers, decorations or stored items; the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-045",
+      "name": "Tall Empty Shelves",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A tall empty shelving unit suitable for libraries, storerooms or workshops.",
+      "imagePrompt": "A tall full-height dark oak freestanding shelving unit with four or five completely empty shelves, sturdy medieval construction and subtle carved details; no books, containers, decorations or stored objects, and the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-046",
+      "name": "Wide Empty Shelves",
+      "categoryId": "bookcases",
+      "IsImageGenerated": false,
+      "description": "A broad empty shelving unit for larger chambers and storage areas.",
+      "imagePrompt": "A wide dark oak freestanding shelving unit with several entirely empty open shelves and well-supported compartments, solid medieval construction and restrained carved details; no books, containers, decorations or stored items, and the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-047",
+      "name": "Small Cupboard",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "A compact wooden cupboard for general household or dungeon storage.",
+      "imagePrompt": "A short compact medieval dark oak cupboard with two closed solid wooden doors, simple recessed panels, iron hinges and handles, a sturdy low plinth and practical construction; all doors remain closed and the furniture is the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-048",
+      "name": "Narrow Tall Cupboard",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "A narrow upright cupboard for compact vertical storage.",
+      "imagePrompt": "A narrow tall medieval dark oak cupboard with a single closed full-height panelled wooden door, visible hand-forged iron hinges, a simple handle and sturdy upright construction; all doors remain closed and the furniture is the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-049",
+      "name": "Wide Double-Door Cupboard",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "A broad double-door cupboard for larger indoor storage needs.",
+      "imagePrompt": "A wide medieval dark oak storage cupboard with two large closed panelled wooden doors, iron hinges and handles, restrained carved panels, a solid base and strong practical construction suitable for a storeroom; the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
+    },
+    {
+      "id": "AHQ-FUR-050",
+      "name": "Grand Ornate Cupboard",
+      "categoryId": "containers",
+      "IsImageGenerated": false,
+      "description": "An impressive decorative cupboard suited to a lord's chamber or important room.",
+      "imagePrompt": "A grand tall medieval dark oak cupboard with two closed full-height panelled wooden doors, sturdy carved cornice, restrained ornamental relief carving, aged iron fittings and substantial solid construction; the furniture remains the sole hero object.",
+      "baseImagePrompt": "dungeon-furniture-v1",
+      "image": null,
+      "model": null
     }
   ]
 }

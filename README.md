@@ -28,11 +28,11 @@ Pages is not automatically activated by committing files. The repository owner n
 | `scripts/validate-catalog.mjs` | Validates IDs, categories, prompts and image references |
 | `.github/workflows/validate-catalog.yml` | Runs the validator when changes are pushed or proposed |
 
-There are **40 starter entries** across storage, tables, seating, sleeping, lighting, utility and arcane furniture. Items with no published image have `IsImageGenerated: false` and `image: null`.
+There are **50 furniture entries** across storage, tables, seating, sleeping, lighting, utility and arcane furniture. Items with no published image have `IsImageGenerated: false` and `image: null`.
 
 ## Asset folders
 
-Every one of the **40 current models** has its own `images/` directory within a category-mirrored tree under `assets/furniture/`. Folder paths use category **IDs** from `data/furniture.json` and permanent furniture IDs:
+Every one of the **50 current models** has its own `images/` directory within a category-mirrored tree under `assets/furniture/`. Folder paths use category **IDs** from `data/furniture.json` and permanent furniture IDs:
 
 ```text
 assets/furniture/

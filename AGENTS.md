@@ -41,7 +41,7 @@ assets/furniture/
 
 **Rules:**
 - Derive the directory as `assets/furniture/<category-id-path>/<ASSET-ID>/`; for example `assets/furniture/storage/bookcases/AHQ-FUR-001/`.
-- Each of the initial 40 models has both `images/.gitkeep` and `models/.gitkeep` markers to make its image and GLB folders visible in Git. Other subfolders are created only when there are files to store in them.
+- Each furniture record has both `images/.gitkeep` and `models/.gitkeep` markers to make its image and GLB folders visible in Git. Other subfolders are created only when there are files to store in them.
 - The ID is stable even if an item's display name changes. Never organise by name or by the JSON array index.
 - Keep **all** assets for an item in its model directory: published/reference images under `images/`, generated 3D files under `models/`, maps under `textures/`, and editable files under `source/`.
 - Use `images/primary.png` as the canonical approved website image. Store other variants in `images/` and review candidates in `images/candidates/`, but do not refer to an unapproved candidate in the JSON.
